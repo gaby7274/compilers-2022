@@ -15,6 +15,12 @@ rule read =
     | "add1" { ADD1 }
     | "sub1" { SUB1 }
     | "let" { LET }
+    | eof { EOF }
     | '=' { EQUAL }
     | "in" { IN } 
+    | '+' { PLUS }
+    | '-' { MINUS }
+    | '*' { TIMES }
     | letter (letter | digit | '_' )* as lxm { IDENTIFIER lxm }
+    
+    
