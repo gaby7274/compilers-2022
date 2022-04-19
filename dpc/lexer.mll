@@ -4,7 +4,7 @@ open Parser
 let whitespace = [' ' '\t' '\n' '\r' ]
 let digit = ['0'-'9']
 let number = digit+
-let letter = ['A'-'Z' 'a'-'z'] 
+let letter = ['A'-'Z' 'a'-'z']
 
 rule read =
   parse
@@ -15,12 +15,28 @@ rule read =
     | "add1" { ADD1 }
     | "sub1" { SUB1 }
     | "let" { LET }
-    | eof { EOF }
     | '=' { EQUAL }
-    | "in" { IN } 
+
     | '+' { PLUS }
     | '-' { MINUS }
     | '*' { TIMES }
+
+
+
+
+    | "==" { D_EQUAL }
+    | '=' { EQUAL }
+    | "in" { IN }
+    | "if" { IF }
+    | ':' { COLON }
+    | "else:" { ELSE }
+    | "true" { TRUE }
+    | "false" { FALSE }
+    | "!=" { NOT_EQ }
+    | "!" { NOT }
+    | "&&" { AND }
+    | "||" { OR }
+    | "<=" { LESS_EQUAL }
+    | "<" { LESS }
     | letter (letter | digit | '_' )* as lxm { IDENTIFIER lxm }
-    
-    
+    | eof { EOF }
