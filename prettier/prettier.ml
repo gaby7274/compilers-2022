@@ -1,6 +1,7 @@
 open Printf
 open Syntax
 
+
 let pretty_prim2 op =
   match op with
   | Plus -> "Plus "
@@ -18,7 +19,16 @@ let rec pretty_expr expr =
      pretty_expr e1 ^ ", " ^
      pretty_expr e2 ^
      ")"
-  | _ -> failwith "Sorry, can't pretty print that yet."
+  | Id i -> "Id " ^ i
+  | If (e1, e2, e3) -> "If (" ^ 
+    pretty_expr e1 ^ ", " ^
+    pretty_expr e2 ^ ", " ^
+    pretty_expr e3 ^ ")"
+  | Let (s, e1, e2) -> "Let (Id "^
+    s ^ ", " ^
+    pretty_expr e1 ^ ", " ^
+    pretty_expr e2 ^ ")"
+  (* | _ -> failwith "Sorry, can't pretty print that yet." *) 
 
 (* Some OCaml boilerplate for reading files and command-line arguments *)
 let () =
